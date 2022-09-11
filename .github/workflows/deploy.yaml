@@ -1,0 +1,19 @@
+name: Build & Deploy
+on:
+  push:
+     branches: [master]
+     
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Django Classroom App
+      with:
+        host: ${{secrets.SSH_HOST}}
+        key: ${{secrets.SSH_KEY}}
+        username: ${{secrets.SSH_USERNAME}}
+        script:
+          nkdir project
+          cd project
+          git clone https://github.com/rahulbiswas24680/Classroom-api.git
+          echo "Deployment was successful"
